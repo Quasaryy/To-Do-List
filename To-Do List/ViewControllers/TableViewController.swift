@@ -78,7 +78,7 @@ class TableViewController: UITableViewController {
     
 }
 
-// MARK: Private Methods
+// MARK: - Private Methods
 extension TableViewController {
     
     // Func to remove action for leading swipe
