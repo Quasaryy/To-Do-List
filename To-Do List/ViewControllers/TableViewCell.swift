@@ -9,7 +9,7 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
     
+
     @IBOutlet weak var taskLabel: UILabel!
-    @IBOutlet weak var unDoneLabel: UILabel!
     @IBOutlet weak var doneLabel: UILabel!
 }

@@ -36,7 +36,7 @@ class TableViewController: UITableViewController {
 
         // Configure content
         cell.taskLabel.text = toDoList[indexPath.row].taskName
-        
+        cell.doneLabel.text = toDoList[indexPath.row].doneEmoji
         return cell
     }
     
@@ -50,11 +50,13 @@ class TableViewController: UITableViewController {
         switch isTrue {
         case false:
             toDoList[indexPath.row].taskName = "sdfsddgsdgsdg"
-            tableView.reloadRows(at: [indexPath], with: .none)
+            toDoList[indexPath.row].doneEmoji = "✅"
+            tableView.reloadRows(at: [indexPath], with: .automatic)
             toDoList[indexPath.row].isDone = true
         case true:
             toDoList[indexPath.row].taskName = "236236236236"
-            tableView.reloadRows(at: [indexPath], with: .none)
+            toDoList[indexPath.row].doneEmoji = "⚪️"
+            tableView.reloadRows(at: [indexPath], with: .automatic)
             toDoList[indexPath.row].isDone = false
         }
         
