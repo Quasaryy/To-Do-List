@@ -17,7 +17,7 @@ class AddNewTaskViewController: UIViewController {
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         updateSaveButton() // Make sure that save button is inactive during the transition
     }
     
@@ -26,7 +26,7 @@ class AddNewTaskViewController: UIViewController {
     @IBAction func textFieldWasChanged(_ sender: UITextField) {
         updateSaveButton()
     }
-
+    
 }
 
 // MARK:  - Private Methods
@@ -37,6 +37,12 @@ extension AddNewTaskViewController {
         let addNewTaskTF = addNewTaskTF.text ?? ""
         
         addNewTaskButton.isEnabled = !addNewTaskTF.isEmpty
+    }
+    
+    // Settings for keyboard
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
 }
