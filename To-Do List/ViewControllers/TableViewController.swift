@@ -46,11 +46,11 @@ class TableViewController: UITableViewController {
         let isTrue = toDoList[indexPath.row].isDone
         switch isTrue {
         case false:
-            toDoList[indexPath.row].doneEmoji = "✅"
+            toDoList[indexPath.row].doneEmoji = "🟢"
             tableView.reloadRows(at: [indexPath], with: .automatic)
             toDoList[indexPath.row].isDone = true
         case true:
-            toDoList[indexPath.row].doneEmoji = "⚪️"
+            toDoList[indexPath.row].doneEmoji = "⭕️"
             tableView.reloadRows(at: [indexPath], with: .automatic)
             toDoList[indexPath.row].isDone = false
         }
@@ -70,7 +70,7 @@ class TableViewController: UITableViewController {
             let indexPath = IndexPath(row: toDoList.count, section: 0)
             
             let sourceNewTask = sourceVC.addNewTaskTF.text ?? ""
-            toDoList.append(ToDoList(taskName: sourceNewTask, isDone: false, doneEmoji: "⚪️"))
+            toDoList.append(ToDoList(taskName: sourceNewTask, isDone: false, doneEmoji: "⭕️"))
             tableView.insertRows(at: [indexPath], with: .top)
         }
         
