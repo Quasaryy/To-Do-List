@@ -16,69 +16,71 @@ class TableViewController: UITableViewController {
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.clearsSelectionOnViewWillAppear = false
-
+        
         //self.navigationItem.leftBarButtonItem = self.editButtonItem // Edit mode
         navigationController?.navigationBar.prefersLargeTitles = true // Large title
         
     }
     
-
+    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return toDoList.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // Creating and casting cell as custom cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
-
+        
         // Configure content
         cell.taskLabel.text = toDoList[indexPath.row].taskName
         cell.doneLabel.text = toDoList[indexPath.row].doneEmoji
         return cell
     }
     
-    // Deselect a cell
+    // Actions on selecting the rows
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        
         
         let isTrue = toDoList[indexPath.row].isDone
         switch isTrue {
         case false:
-            toDoList[indexPath.row].taskName = "sdfsddgsdgsdg"
             toDoList[indexPath.row].doneEmoji = "✅"
             tableView.reloadRows(at: [indexPath], with: .automatic)
             toDoList[indexPath.row].isDone = true
         case true:
-            toDoList[indexPath.row].taskName = "236236236236"
             toDoList[indexPath.row].doneEmoji = "⚪️"
             tableView.reloadRows(at: [indexPath], with: .automatic)
             toDoList[indexPath.row].isDone = false
         }
         
     }
-
-    // Remive from  leading side
+    
+    // Remive row from leading side
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let remove = remove(at: indexPath)
         return UISwipeActionsConfiguration(actions: [remove])
     }
     
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func unwindSegueTableVC(segue: UIStoryboardSegue) {
+        guard let sourceVC = segue.source as? AddNewTaskViewController else { return }
+        if segue.identifier == "saveSegue" {
+            let indexPath = IndexPath(row: toDoList.count, section: 0)
+            
+            let sourceNewTask = sourceVC.addNewTaskTF.text ?? ""
+            toDoList.append(ToDoList(taskName: sourceNewTask, isDone: false, doneEmoji: "⚪️"))
+            tableView.insertRows(at: [indexPath], with: .top)
+        }
+        
     }
-    */
 
 }
+
 
 // MARK: Private Methods
 extension TableViewController {

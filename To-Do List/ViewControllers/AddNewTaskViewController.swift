@@ -8,22 +8,34 @@
 import UIKit
 
 class AddNewTaskViewController: UIViewController {
-
+    
+    // MARK: - IB Outlets
+    @IBOutlet weak var addNewTaskTF: UITextField!
+    @IBOutlet weak var addNewTaskButton: UIButton!
+    
+    
+    // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        updateSaveButton()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // Enable save button if all text field are not empty and have been edited
+    @IBAction func textFieldWasChanged(_ sender: UITextField) {
+        updateSaveButton()
     }
-    */
 
+}
+
+// MARK:  - Private Methods
+extension AddNewTaskViewController {
+    
+    // Enable save button if all text field are not empty
+    private func updateSaveButton() {
+        let addNewTaskTF = addNewTaskTF.text ?? ""
+        
+        addNewTaskButton.isEnabled = !addNewTaskTF.isEmpty
+    }
+    
 }

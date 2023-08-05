@@ -41,7 +41,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="mUa-yU-leo">
                                                     <rect key="frame" x="38" y="8.3333333333333339" width="283" height="20.333333333333329"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHm-NN-CHG">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHm-NN-CHG">
                                                             <rect key="frame" x="0.0" y="0.0" width="45" height="20.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -73,7 +73,7 @@
                     <navigationItem key="navigationItem" title="To-Do List" id="QXf-qT-4cP">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Oyj-4y-x5y">
                             <connections>
-                                <segue destination="02K-4x-TWR" kind="presentation" id="jI0-3V-Tw2"/>
+                                <segue destination="02K-4x-TWR" kind="presentation" identifier="" id="jI0-3V-Tw2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -97,19 +97,28 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldWasChanged:" destination="02K-4x-TWR" eventType="editingChanged" id="QWb-T5-Sth"/>
+                                </connections>
                             </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="Ego-Us-WZx">
-                                <rect key="frame" x="87" y="170" width="235" height="40"/>
+                                <rect key="frame" x="79" y="170" width="235" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wqt-s1-EwP">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Save Task"/>
+                                        <connections>
+                                            <segue destination="fTM-CG-xjq" kind="unwind" identifier="saveSegue" unwindAction="unwindSegueTableVCWithSegue:" id="ghN-mi-xLG"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hrr-qS-HoT">
                                         <rect key="frame" x="135" y="0.0" width="100" height="40"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="Cancel"/>
+                                        <connections>
+                                            <segue destination="fTM-CG-xjq" kind="unwind" identifier="cancelSegue" unwindAction="unwindSegueTableVCWithSegue:" id="edP-YQ-tDT"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -123,13 +132,19 @@
                         <constraints>
                             <constraint firstItem="tEl-We-iBS" firstAttribute="trailing" secondItem="XFh-Sl-O54" secondAttribute="trailing" constant="16" id="2Qw-ca-1tu"/>
                             <constraint firstItem="Ego-Us-WZx" firstAttribute="top" secondItem="XFh-Sl-O54" secondAttribute="bottom" constant="50" id="2ZN-rD-tpi"/>
-                            <constraint firstItem="Ego-Us-WZx" firstAttribute="leading" secondItem="tEl-We-iBS" secondAttribute="leading" constant="87" id="Uin-JR-sPH"/>
+                            <constraint firstItem="Ego-Us-WZx" firstAttribute="centerX" secondItem="mSR-oB-oKz" secondAttribute="centerX" id="2cc-va-hGu"/>
                             <constraint firstItem="XFh-Sl-O54" firstAttribute="top" secondItem="tEl-We-iBS" secondAttribute="top" constant="80" id="bGA-zl-G6t"/>
                             <constraint firstItem="XFh-Sl-O54" firstAttribute="leading" secondItem="tEl-We-iBS" secondAttribute="leading" constant="16" id="x0b-T9-LrH"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="85E-J2-Zrz"/>
+                    <connections>
+                        <outlet property="addNewTaskButton" destination="Wqt-s1-EwP" id="TXB-mi-giy"/>
+                        <outlet property="addNewTaskTF" destination="XFh-Sl-O54" id="tzV-b1-mYf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fv1-a0-9VR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="fTM-CG-xjq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="549" y="-170"/>
         </scene>

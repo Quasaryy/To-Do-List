@@ -13,7 +13,6 @@ struct ToDoList {
 
 extension ToDoList {
     static func getToDoList() -> [ToDoList] {
-        [ToDoList(taskName: "My first task", isDone: false, doneEmoji: "⚪️"),
-         ToDoList(taskName: "My first task", isDone: true, doneEmoji: "⚪️")]
+        [ToDoList(taskName: "My first task", isDone: false, doneEmoji: "⚪️")]
     }
 }
