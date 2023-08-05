@@ -2,7 +2,7 @@
 //  todolist.swift
 //  To-Do List
 //
-//  Created by Yury on 04/08/2023.
+//  Created by Yury Lebedev on 04/08/2023.
 //
 
 struct ToDoList {

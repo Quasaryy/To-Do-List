@@ -2,7 +2,7 @@
 //  AddNewTaskViewController.swift
 //  To-Do List
 //
-//  Created by Yury on 05/08/2023.
+//  Created by Yury Lebedev on 05/08/2023.
 //
 
 import UIKit
@@ -18,10 +18,11 @@ class AddNewTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        updateSaveButton()
+        updateSaveButton() // Make sure that save button is inactive during the transition
     }
     
-    // Enable save button if all text field are not empty and have been edited
+    // MARK: - IB Action
+    // Enable save button if text field are not empty and have been edited
     @IBAction func textFieldWasChanged(_ sender: UITextField) {
         updateSaveButton()
     }
@@ -31,7 +32,7 @@ class AddNewTaskViewController: UIViewController {
 // MARK:  - Private Methods
 extension AddNewTaskViewController {
     
-    // Enable save button if all text field are not empty
+    // Enable save button if text field are not empty
     private func updateSaveButton() {
         let addNewTaskTF = addNewTaskTF.text ?? ""
         

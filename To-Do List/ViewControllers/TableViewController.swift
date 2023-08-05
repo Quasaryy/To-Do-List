@@ -2,7 +2,7 @@
 //  TableViewController.swift
 //  To-Do List
 //
-//  Created by Yury on 04/08/2023.
+//  Created by Yury Lebedev on 04/08/2023.
 //
 
 import UIKit
@@ -10,20 +10,17 @@ import UIKit
 class TableViewController: UITableViewController {
     
     // MARK: - Properties
-    private var toDoList = ToDoList.getToDoList()
+    private var toDoList = ToDoList.getToDoList() // Getting model
     
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.clearsSelectionOnViewWillAppear = false
-        
-        //self.navigationItem.leftBarButtonItem = self.editButtonItem // Edit mode
+        self.clearsSelectionOnViewWillAppear = false // Clear rows on selection
         navigationController?.navigationBar.prefersLargeTitles = true // Large title
         
     }
-    
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -36,7 +33,7 @@ class TableViewController: UITableViewController {
         // Creating and casting cell as custom cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
         
-        // Configure content
+        // Configure cell content
         cell.taskLabel.text = toDoList[indexPath.row].taskName
         cell.doneLabel.text = toDoList[indexPath.row].doneEmoji
         return cell
@@ -60,7 +57,7 @@ class TableViewController: UITableViewController {
         
     }
     
-    // Remive row from leading side
+    // Remove row from leading side
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let remove = remove(at: indexPath)
         return UISwipeActionsConfiguration(actions: [remove])
@@ -78,14 +75,13 @@ class TableViewController: UITableViewController {
         }
         
     }
-
+    
 }
-
 
 // MARK: Private Methods
 extension TableViewController {
     
-    // Remove action for leading swipe
+    // Func to remove action for leading swipe
     private func remove(at indexPath: IndexPath) -> UIContextualAction {
         let remove = UIContextualAction(style: .destructive, title: "Remove") { _, _, completion in
             self.toDoList.remove(at: indexPath.row)
@@ -93,7 +89,7 @@ extension TableViewController {
             completion(true)
         }
         
-        remove.image = UIImage(systemName: "xmark.circle")
+        remove.image = UIImage(systemName: "trash.fill")
         remove.backgroundColor = .systemRed
         return remove
     }
