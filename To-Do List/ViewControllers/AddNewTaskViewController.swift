@@ -29,7 +29,7 @@ class AddNewTaskViewController: UIViewController {
     
 }
 
-// MARK:  - Private Methods
+// MARK: - Private Methods
 extension AddNewTaskViewController {
     
     // Enable save button if text field are not empty
